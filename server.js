@@ -1,14 +1,20 @@
 import express from 'express'
 
 
+import { db } from './src/config/db.config.js'
 
+import dotenv from 'dotenv'
 
+dotenv.config()
 
 const app = express()
 
 
 
 
-app.listen(3000, ()=>{
-    console.log(`servidor levantado en el puerto: 3000`)
+
+db()
+
+app.listen(process.env.PORT, ()=>{
+    console.log(`servidor levantado en el puerto: ${process.env.PORT}`)
 })
