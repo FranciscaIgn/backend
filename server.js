@@ -1,6 +1,6 @@
 import express from 'express'
 import infoRouter from './src/routes/restaurant.routes.js'
-
+import userRouter from './src/routes/user.routes.js'
 
 import { db } from './src/config/db.config.js'
 
@@ -19,6 +19,8 @@ app.use(express.urlencoded({extended: true}))
 
 //middlewares para rutas //
 app.use('/api/v1', infoRouter)
+
+app.use('/api/v1', userRouter)
 
 
 
