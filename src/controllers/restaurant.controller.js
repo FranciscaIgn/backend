@@ -6,7 +6,7 @@ export const getAllInfo = async(req, res) =>{
        res.status(200).json({
         message: 'información encontrada',
         status: 200,
-        data:allInfo
+        data: allInfo
        })
     }catch(error){
        res.status(404).json({
@@ -14,5 +14,34 @@ export const getAllInfo = async(req, res) =>{
         status: 404,
         error
        })
+    }
+}
+
+
+export const CreateNewiInfo = async(req, res) =>{
+    try{
+        const{nombre, correo, telefono, direccion} =req.body
+
+        const info = new Restaurant({
+            nombre,
+            correo,
+            telefono,
+            direccion
+        })
+
+        const SaveInfo = await info.save()
+
+        res.status(201).json({
+            message: 'info creada con éxito',
+            status: 201,
+            data: SaveInfo
+        })
+    }catch(error){
+        res.status(500).json({
+            message: 'Error al crear la info',
+            status: 500,
+            error
+        })
+
     }
 }
