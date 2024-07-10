@@ -52,20 +52,37 @@ export const updateInfoById = async(req, res) =>{
         const updatedInfo = req.body
 
         const updateInfo = await Restaurant.findOneAndUpdate({ _id: infoID}, updatedInfo, { new: true })
-        if(!updateInfo) res.status(404).json({message:'Información no encontrada', status: 404})
+        if(!updateInfo) res.status(404).json({message:'Información no encontrada', status: 404}) // guard condition
 
             res.status(202).json({
-                message: 'info actualizada con éxito',
+                message: 'información actualizada con éxito',
                 status: 202,
                 data: updateInfo
             })
-            
         }catch(error){ 
             res.status(500).json({
                 message: 'no pudimos actualizar la información',
                 status: 500,
                 error
             })
-
     }
+}
+
+export const deleteInfoById = async(req, res) =>{
+   try {
+    const infoID = req.params.id
+
+    const removeInfo = await Restaurant.findOneAndDelete({ _id: infoID })
+    if(!removeInfo)res.status(404).json({ message: 'información no encontrada', status: 404}) // guard condition
+        res.status(202).json({
+    message: 'informacion eliminada con éxito',
+    status: 202,
+})
+   } catch (error) {
+     res.status(500).json({
+        mesagge: 'No pudimos eliminar la información',
+        status: 500,
+        error
+     })
+   }
 }
