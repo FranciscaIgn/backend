@@ -1,10 +1,14 @@
 import express from 'express'
+import cors from 'cors'
+
 import infoRouter from './src/routes/restaurant.routes.js'
 import userRouter from './src/routes/user.routes.js'
-
+import authRouter from './src/routes/auth.routes.js'
+import reservaRouter from './src/routes/reserva.routes.js'
 import { db } from './src/config/db.config.js'
 
 import dotenv from 'dotenv'
+import { corsOption } from './src/middlewares/cors.middleware.js'
 
 dotenv.config()
 
@@ -14,13 +18,15 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
+//middleware CORS
+app.use(cors(corsOption))
 
 
 //middlewares para rutas //
-app.use('/api/v1', infoRouter)
-
-app.use('/api/v1', userRouter)
+app.use('/api/v1', authRouter);
+app.use('/api/v1', infoRouter);
+app.use('/api/v1', userRouter);
+app.use('/api/v1', reservaRouter)
 
 
 

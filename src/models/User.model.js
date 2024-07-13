@@ -6,7 +6,7 @@ const UserSchema = new Schema({
     nombre: {type: String, required: true },
     apellido: {type: String, required: true},
     rut: {type: String, required: true, unique: true},
-    telefono: {type: String, required: true},
+    telefono: {type: Number, required: true},
     correo: {type: String, required: true},
     contraseña: {type: String, required: true}   
 }, { versionKey: false })
