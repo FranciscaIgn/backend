@@ -14,12 +14,13 @@ dotenv.config()
 
 const app = express()
 
+
 //middleswares parse Json  siempre van si o si y siempre primero este//
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 //middleware CORS
-app.use(cors(corsOption))
+app.use(cors())
 
 
 //middlewares para rutas //
